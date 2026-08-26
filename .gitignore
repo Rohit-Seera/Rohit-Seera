@@ -1,0 +1,24 @@
+# Raw source photo for the portrait generator — stays local, never committed.
+profile.png
+profile.jpg
+profile.jpeg
+profile.webp
+
+# ------------------------------------------------------------------
+# Portrait generator - ye local tool hai, public repo mein zaroorat nahi.
+# Script isi folder se chalti hai chahe ignore ho, to isko chhedne ki
+# koi zaroorat nahi. (Version-control mein rakhna ho to ye line hata do.)
+# Poora process: apni local PORTRAIT_GUIDE.md
+# ------------------------------------------------------------------
+tools/
+
+# Python noise from running tools/generate.py
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS noise
+Thumbs.db
+desktop.ini
+.DS_Store
