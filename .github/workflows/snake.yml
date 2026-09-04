@@ -1,5 +1,5 @@
-# Generates the contribution snake animation and publishes it to the `output` branch.
-name: Generate Snake Animation
+# Generates the contribution snake animation and refreshes local GitHub stats cards.
+name: Generate Profile Stats & Snake
 
 on:
   schedule:
@@ -17,6 +17,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout profile repo
+        uses: actions/checkout@v4
+
+      - name: Generate GitHub stats card
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: stats
+          options: username=${{ github.repository_owner }}&show_icons=true&hide_rank=true&bg_color=0D1117&title_color=A78BFA&icon_color=8B5CF6&text_color=C9D1D9
+          path: profile/stats.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fail_on_error: true
+
       - name: Generate snake SVGs
         uses: Platane/snk@v3
         with:
@@ -29,16 +41,25 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          curl -fsSL \
-            -H "Authorization: bearer ${GH_TOKEN}" \
-            -H "Content-Type: application/json" \
-            --data '{"query":"query($login:String!){user(login:$login){contributionsCollection{contributionCalendar{totalContributions}}}}","variables":{"login":"Rohit-Seera"}}' \
-            https://api.github.com/graphql > contributions.json
+          gh api graphql \
+            -f login=Rohit-Seera \
+            -f query='query($login:String!){user(login:$login){contributionsCollection{contributionCalendar{totalContributions}}}}' \
+            --jq '.data.user.contributionsCollection.contributionCalendar.totalContributions' > total_contributions.txt
+          test -s total_contributions.txt
+          echo "Total contributions: $(cat total_contributions.txt)"
 
       - name: Generate count and scale snake
         run: python .github/scripts/generate_contribution_assets.py
 
-      - name: Publish profile assets
+      - name: Commit generated stats to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add profile/stats.svg
+          git commit -m "chore: refresh GitHub profile stats" || exit 0
+          git push
+
+      - name: Publish snake assets to output branch
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
