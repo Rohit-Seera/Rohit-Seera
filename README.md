@@ -157,6 +157,48 @@ The engineering problem here wasn't calling an LLM — it was making a stateful,
 </details>
 
 <details>
+<summary><b>ProtoBuy — Agentic Checkout & Bounded-Autonomy Payments</b></summary>
+
+<br>
+
+An agentic commerce system built for the **Razorpay AI Buildathon 2026**, where an AI buyer can browse a merchant catalog, recommend products, and complete a purchase while respecting a hard spending boundary.
+
+| | |
+| :--- | :--- |
+| **Stack** | Python · FastAPI · Groq/Llama · Razorpay · REST APIs |
+| **Core Loop** | Natural-language shopping → catalog search → guardrail check → checkout |
+| **Safety** | `AUTONOMY_LIMIT` gates autonomous payments; purchases above the limit require explicit buyer confirmation |
+| **Reliability** | Distinct recovery paths for out-of-stock products, invalid payment requests, and Razorpay/server failures |
+| **Security** | Catalog content is treated as untrusted data; prompt-injection attempts are detected and logged |
+| **Observability** | Plain-language audit trail for guardrail decisions, orders, stockouts, and payment failures |
+
+The interesting engineering problem was not making an LLM call a payment API — it was constraining what the agent is allowed to do. The system separates **agent reasoning from authorization**, records each decision, and fails explicitly when a merchant or payment dependency is unavailable.
+
+</details>
+
+<details>
+<summary><b>Weings AI — Real-Time Voice Companion</b></summary>
+
+<br>
+
+A real-time conversational voice companion built around a persistent backend, speech recognition, LLM reasoning, and expressive response metadata.
+
+| | |
+| :--- | :--- |
+| **Stack** | Python · FastAPI · PostgreSQL · Redis · JWT · Groq · Whisper |
+| **Conversation Engine** | Stateful voice sessions with turn-level persistence and streamed AI responses |
+| **Speech** | Groq Whisper Large V3 Turbo for speech-to-text |
+| **LLM** | Groq Llama 3.3 70B for conversational generation and structured response metadata |
+| **Backend** | FastAPI APIs with authenticated voice sessions, persistent state, and usage tracking |
+| **Realtime** | Designed around low-latency turn handling so speech, reasoning, and response delivery feel conversational rather than request/response-like |
+
+The engineering focus is the pipeline between **voice input → transcription → LLM reasoning → expressive response**, while keeping sessions durable and the backend observable enough to support a real product rather than a one-off demo.
+
+<a href="https://github.com/Rohit-Seera/voice-companion"><img src="https://img.shields.io/badge/View%20Project-private%20repo-6D28D9?style=flat-square&logo=github&logoColor=white&labelColor=0D1117" alt="View Weings AI project" /></a>
+
+</details>
+
+<details>
 <summary><b>Healthcare Data Classification — Artificial Neural Network</b></summary>
 
 <br>
@@ -212,47 +254,18 @@ Owned generative AI production work across image, video, and creative automation
 ![Model Benchmarking](https://img.shields.io/badge/Model%20Benchmarking-8B5CF6?style=flat-square&labelColor=0D1117)
 ![Creative Automation](https://img.shields.io/badge/Creative%20Automation-8B5CF6?style=flat-square&labelColor=0D1117)
 
-### Core Member &nbsp;·&nbsp; Podyssey (Startup), Bhopal
-`August 2025`
-
-Contributed to content creation and community initiatives at a student-led startup, using GenAI tooling to raise creative output and team productivity.
-
-![Content Strategy](https://img.shields.io/badge/Content%20Strategy-6D28D9?style=flat-square&labelColor=0D1117)
-![GenAI Tooling](https://img.shields.io/badge/GenAI%20Tooling-6D28D9?style=flat-square&labelColor=0D1117)
-![Community](https://img.shields.io/badge/Community%20Building-6D28D9?style=flat-square&labelColor=0D1117)
-
-### Creative Lead — Documentary &nbsp;·&nbsp; NIIMACK Fest, IIIT Bhopal
-`April 2025`
-
-Edited and produced the official fest documentary — VFX, color grading, video editing, and narrative structure end to end.
-
-![VFX](https://img.shields.io/badge/VFX-4C1D95?style=flat-square&labelColor=0D1117)
-![Color Grading](https://img.shields.io/badge/Color%20Grading-4C1D95?style=flat-square&labelColor=0D1117)
-![Video Editing](https://img.shields.io/badge/Video%20Editing-4C1D95?style=flat-square&labelColor=0D1117)
-
----
-
-## Achievements
-
-<div align="center">
-
-| Recognition | Details |
-| :--- | :--- |
-| **Official Logo Designer — IIIT Bhopal Alumni Reconnect Cell** | Designed the cell's official identity, now used across alumni engagement and institutional communications |
-| **Hack-O-Sprint — IIIT Bhopal Internal Hackathon** | Built and demoed a web-based application as part of a team under hackathon time constraints |
-| **10M+ Campaign Reach** | Generative AI work at PhotoGPT supported campaigns reaching 10M+ views across Instagram and Threads |
-| **99.12% Test Accuracy** | PyTorch ANN for clinical binary classification, validated with full scikit-learn metric suite |
-
-</div>
-
 ---
 
 ## GitHub Analytics
 
 <div align="center">
 
-<img width="49%" src="https://github-readme-stats.vercel.app/api?username=Rohit-Seera&show_icons=true&count_private=true&include_all_commits=true&hide_border=true&bg_color=0D1117&title_color=A78BFA&icon_color=8B5CF6&text_color=C9D1D9&ring_color=78FF9C" alt="GitHub Stats" />
-<img width="40%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Rohit-Seera&layout=compact&langs_count=8&hide_border=true&bg_color=0D1117&title_color=A78BFA&text_color=C9D1D9" alt="Top Languages" />
+<img width="48%" src="https://github-readme-stats.vercel.app/api?username=Rohit-Seera&show_icons=true&count_private=true&include_all_commits=true&hide_border=true&bg_color=0D1117&title_color=A78BFA&icon_color=8B5CF6&text_color=C9D1D9&ring_color=78FF9C" alt="GitHub Stats — commits, PRs, issues and stars" />
+<img width="48%" src="https://streak-stats.demolab.com?user=Rohit-Seera&theme=github-dark-blue&hide_border=true&background=0D1117&ring=78FF9C&fire=8B5CF6&currStreakLabel=A78BFA&sideLabels=C9D1D9&currStreakNum=FFFFFF&sideNums=FFFFFF&dates=8B949E" alt="GitHub contribution streak" />
+
+<br>
+
+<img width="88%" src="https://raw.githubusercontent.com/Rohit-Seera/Rohit-Seera/output/contribution-count.svg" alt="Total GitHub contributions" />
 
 </div>
 
@@ -265,37 +278,14 @@ Edited and produced the official fest documentary — VFX, color grading, video 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Rohit-Seera/Rohit-Seera/output/github-snake-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Rohit-Seera/Rohit-Seera/output/github-snake.svg" />
-  <img alt="GitHub Contribution Snake" src="https://raw.githubusercontent.com/Rohit-Seera/Rohit-Seera/output/github-snake.svg" />
+  <img alt="GitHub Contribution Snake" src="https://raw.githubusercontent.com/Rohit-Seera/Rohit-Seera/output/github-snake.svg" width="100%" />
 </picture>
 
+<br>
+
+<img src="https://raw.githubusercontent.com/Rohit-Seera/Rohit-Seera/output/contribution-eaten.svg" width="72%" alt="Contributions eaten by snake" />
+
 </div>
-
----
-
-## Current Focus
-
-```yaml
-learning:
-  - LLM systems engineering: evaluation harnesses, caching, cost/latency tradeoffs
-  - Agentic architectures: tool use, planning loops, multi-step state with LangGraph
-  - Transformers internals: attention, tokenization, GPT architecture from first principles
-  - Data structures & algorithms: consistent problem solving in C++ and Python
-
-building:
-  - Mistella: multimodal AI workspace with hybrid RAG and streaming APIs
-  - Reproducible PyTorch training pipelines with proper evaluation reporting
-  - Small, well-documented open source utilities for RAG and prompt workflows
-
-exploring:
-  - Retrieval quality: reranking, chunking strategies, hybrid dense + sparse search
-  - Model benchmarking: structured comparison of newly released GenAI models
-  - MLOps fundamentals: experiment tracking, containerization, deployment
-
-open_to:
-  - AI / ML Engineering internships
-  - Generative AI and LLM application roles
-  - Research collaborations and open source contributions
-```
 
 ---
 
