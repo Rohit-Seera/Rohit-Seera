@@ -260,7 +260,7 @@ Owned generative AI production work across image, video, and creative automation
 
 <div align="center">
 
-<img width="48%" src="https://github-readme-stats.vercel.app/api?username=Rohit-Seera&show_icons=true&count_private=true&include_all_commits=true&hide_border=true&bg_color=0D1117&title_color=A78BFA&icon_color=8B5CF6&text_color=C9D1D9&ring_color=78FF9C" alt="GitHub Stats — commits, PRs, issues and stars" />
+<img width="48%" src="./profile/stats.svg" alt="GitHub Stats — commits, PRs, issues and stars" />
 <img width="48%" src="https://streak-stats.demolab.com?user=Rohit-Seera&theme=github-dark-blue&hide_border=true&background=0D1117&ring=78FF9C&fire=8B5CF6&currStreakLabel=A78BFA&sideLabels=C9D1D9&currStreakNum=FFFFFF&sideNums=FFFFFF&dates=8B949E" alt="GitHub contribution streak" />
 
 <br>
