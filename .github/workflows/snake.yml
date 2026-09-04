@@ -1,17 +1,10 @@
 # Generates the contribution snake animation and publishes it to the `output` branch.
-#
-# This file must live at:  .github/workflows/snake.yml
-# in the repository named exactly "Rohit-Seera".
-
 name: Generate Snake Animation
 
 on:
   schedule:
-    # Runs daily at 00:00 UTC (05:30 IST)
     - cron: "0 0 * * *"
-  # Lets you trigger it manually from the Actions tab
   workflow_dispatch:
-  # Also regenerate whenever you push to main
   push:
     branches:
       - main
@@ -32,7 +25,20 @@ jobs:
             dist/github-snake.svg
             dist/github-snake-dark.svg?palette=github-dark
 
-      - name: Push to output branch
+      - name: Fetch contribution total
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -fsSL \
+            -H "Authorization: bearer ${GH_TOKEN}" \
+            -H "Content-Type: application/json" \
+            --data '{"query":"query($login:String!){user(login:$login){contributionsCollection{contributionCalendar{totalContributions}}}}","variables":{"login":"Rohit-Seera"}}' \
+            https://api.github.com/graphql > contributions.json
+
+      - name: Generate count and scale snake
+        run: python .github/scripts/generate_contribution_assets.py
+
+      - name: Publish profile assets
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
