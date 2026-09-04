@@ -35,24 +35,35 @@ jobs:
         run: |
           gh api graphql \
             -f login=Rohit-Seera \
-            -f query='query($login:String!){user(login:$login){contributionsCollection{totalCommitContributions contributionCalendar{totalContributions weeks{contributionDays{contributionCount}}}}}}' \
+            -f query='query($login:String!){user(login:$login){contributionsCollection{totalCommitContributions contributionCalendar{totalContributions weeks{contributionDays{date contributionCount}}}}}}' \
             --jq '.' > contributions.json
           gh api /users/Rohit-Seera --jq '.public_repos' > public_repos.txt
           test -s contributions.json
           test -s public_repos.txt
 
       - name: Generate local stats and snake cards
-        run: |
-          export PUBLIC_REPOS="$(cat public_repos.txt)"
-          python .github/scripts/generate_contribution_assets.py
+        run: python .github/scripts/generate_contribution_assets.py
 
-      - name: Commit refreshed profile cards to main
+      - name: Remove duplicate contribution total from external streak card
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path("README.md")
+          s = p.read_text(encoding="utf-8")
+          s = s.replace(
+              "&dates=8B949E\" alt=\"GitHub contribution streak\"",
+              "&dates=8B949E&hide_total_contributions=true\" alt=\"GitHub contribution streak\""
+          )
+          p.write_text(s, encoding="utf-8")
+          PY
+
+      - name: Commit refreshed profile cards and README
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add profile/stats.svg profile/contribution-count.svg profile/contribution-eaten.svg
+          git add README.md profile/stats.svg profile/contribution-count.svg profile/contribution-eaten.svg profile/streak.svg
           git diff --cached --quiet && exit 0
-          git commit -m "chore: refresh GitHub profile cards [skip ci]"
+          git commit -m "chore: refresh GitHub profile stats [skip ci]"
           git push
 
       - name: Publish snake assets to output branch
