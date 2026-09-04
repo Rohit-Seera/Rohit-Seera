@@ -1,4 +1,4 @@
-# Generates the contribution snake animation and refreshes local GitHub stats cards.
+# Generates the contribution snake animation and refreshes profile stats.
 name: Generate Profile Stats & Snake
 
 on:
@@ -20,15 +20,6 @@ jobs:
       - name: Checkout profile repo
         uses: actions/checkout@v4
 
-      - name: Generate GitHub stats card
-        uses: stats-organization/github-readme-stats-action@v2
-        with:
-          card: stats
-          options: username=${{ github.repository_owner }}&show_icons=true&hide_rank=true&bg_color=0D1117&title_color=A78BFA&icon_color=8B5CF6&text_color=C9D1D9
-          path: profile/stats.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fail_on_error: true
-
       - name: Generate snake SVGs
         uses: Platane/snk@v3
         with:
@@ -37,27 +28,30 @@ jobs:
             dist/github-snake.svg
             dist/github-snake-dark.svg?palette=github-dark
 
-      - name: Fetch contribution total
+      - name: Fetch contribution data
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh api graphql \
             -f login=Rohit-Seera \
-            -f query='query($login:String!){user(login:$login){contributionsCollection{contributionCalendar{totalContributions}}}}' \
-            --jq '.data.user.contributionsCollection.contributionCalendar.totalContributions' > total_contributions.txt
-          test -s total_contributions.txt
-          echo "Total contributions: $(cat total_contributions.txt)"
+            -f query='query($login:String!){user(login:$login){contributionsCollection{totalCommitContributions contributionCalendar{totalContributions}}}}' \
+            --jq '.' > contributions.json
+          gh api /users/Rohit-Seera --jq '.public_repos' > public_repos.txt
+          test -s contributions.json
+          test -s public_repos.txt
 
-      - name: Generate count and scale snake
-        run: python .github/scripts/generate_contribution_assets.py
+      - name: Generate local stats and snake cards
+        run: |
+          export PUBLIC_REPOS="$(cat public_repos.txt)"
+          python .github/scripts/generate_contribution_assets.py
 
-      - name: Commit generated stats to main
+      - name: Commit refreshed profile cards to main
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add profile/stats.svg
+          git add profile/stats.svg profile/contribution-count.svg profile/contribution-eaten.svg
           git diff --cached --quiet && exit 0
-          git commit -m "chore: refresh GitHub profile stats [skip ci]"
+          git commit -m "chore: refresh GitHub profile cards [skip ci]"
           git push
 
       - name: Publish snake assets to output branch
