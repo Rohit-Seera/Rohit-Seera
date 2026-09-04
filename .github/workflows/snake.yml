@@ -3,7 +3,8 @@ name: Generate Profile Stats & Snake
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    # Refresh every 6 hours so contributions from any repository are picked up without waiting a full day.
+    - cron: "0 */6 * * *"
   workflow_dispatch:
   push:
     branches:
@@ -28,13 +29,13 @@ jobs:
             dist/github-snake.svg
             dist/github-snake-dark.svg?palette=github-dark
 
-      - name: Fetch contribution data
+      - name: Fetch contribution data from the same calendar GitHub displays
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh api graphql \
             -f login=Rohit-Seera \
-            -f query='query($login:String!){user(login:$login){contributionsCollection{totalCommitContributions contributionCalendar{totalContributions}}}}' \
+            -f query='query($login:String!){user(login:$login){contributionsCollection{totalCommitContributions contributionCalendar{totalContributions weeks{contributionDays{contributionCount}}}}}}' \
             --jq '.' > contributions.json
           gh api /users/Rohit-Seera --jq '.public_repos' > public_repos.txt
           test -s contributions.json
