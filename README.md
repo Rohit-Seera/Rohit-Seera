@@ -265,7 +265,7 @@ Owned generative AI production work across image, video, and creative automation
 
 <br>
 
-<img width="88%" src="https://raw.githubusercontent.com/Rohit-Seera/Rohit-Seera/output/contribution-count.svg" alt="Total GitHub contributions" />
+<img width="88%" src="./profile/contribution-count.svg" alt="Total GitHub contributions" />
 
 </div>
 
@@ -283,7 +283,7 @@ Owned generative AI production work across image, video, and creative automation
 
 <br>
 
-<img src="https://raw.githubusercontent.com/Rohit-Seera/Rohit-Seera/output/contribution-eaten.svg" width="72%" alt="Contributions eaten by snake" />
+<img src="./profile/contribution-eaten.svg" width="72%" alt="Contributions eaten by snake" />
 
 </div>
 
