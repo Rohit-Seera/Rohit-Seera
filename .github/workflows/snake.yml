@@ -29,6 +29,9 @@ jobs:
             dist/github-snake.svg
             dist/github-snake-dark.svg?palette=github-dark
 
+      - name: Make generated snake files writable
+        run: sudo chmod -R a+rwX dist
+
       - name: Fetch contribution data from the same calendar GitHub displays
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -43,6 +46,15 @@ jobs:
 
       - name: Generate local stats and snake cards
         run: python .github/scripts/generate_contribution_assets.py
+
+      - name: Restore README asset paths
+        run: |
+          cp profile/stats.svg github-stats.svg
+          cp profile/streak.svg github-streak.svg
+          cp profile/contribution-count.svg contribution-count.svg
+          cp profile/contribution-eaten.svg contribution-eaten.svg
+          cp dist/github-snake.svg github-snake.svg
+          cp dist/github-snake-dark.svg github-snake-dark.svg
 
       - name: Remove duplicate contribution total from external streak card
         run: |
@@ -61,7 +73,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md profile/stats.svg profile/contribution-count.svg profile/contribution-eaten.svg profile/streak.svg
+          git add README.md profile/stats.svg profile/streak.svg profile/contribution-count.svg profile/contribution-eaten.svg github-stats.svg github-streak.svg contribution-count.svg contribution-eaten.svg github-snake.svg github-snake-dark.svg
           git diff --cached --quiet && exit 0
           git commit -m "chore: refresh GitHub profile stats [skip ci]"
           git push
