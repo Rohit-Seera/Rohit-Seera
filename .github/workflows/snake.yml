@@ -47,7 +47,7 @@ jobs:
       - name: Generate local stats and snake cards
         run: python .github/scripts/generate_contribution_assets.py
 
-      - name: Restore README asset paths
+      - name: Restore README asset paths and original profile sections
         run: |
           cp profile/stats.svg github-stats.svg
           cp profile/streak.svg github-streak.svg
@@ -55,6 +55,41 @@ jobs:
           cp profile/contribution-eaten.svg contribution-eaten.svg
           cp dist/github-snake.svg github-snake.svg
           cp dist/github-snake-dark.svg github-snake-dark.svg
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path("README.md")
+          s = p.read_text(encoding="utf-8")
+
+          # Keep the generated analytics cards, but always show the dark GitHub-style heatmap snake.
+          s = s.replace(
+              '<img src="./github-snake.svg" alt="GitHub contribution snake" />',
+              '<img src="./github-snake-dark.svg" alt="GitHub contribution snake" />'
+          )
+
+          # Restore the original Connect section from the profile's original design.
+          marker = "## Connect\n"
+          if marker in s:
+              s = s[:s.index(marker)] + '''## Connect
+
+<div align="center">
+
+[![Gmail](https://img.shields.io/badge/Gmail-rrrohitmeena@gmail.com-8B5CF6?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0D1117)](mailto:rrrohitmeena@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Rohit%20Meena-6D28D9?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0D1117)](https://www.linkedin.com/in/rohit-meena-8babba324)
+[![GitHub](https://img.shields.io/badge/GitHub-Rohit--Seera-4C1D95?style=for-the-badge&logo=github&logoColor=white&labelColor=0D1117)](https://github.com/Rohit-Seera)
+[![Codeforces](https://img.shields.io/badge/Codeforces-Rohit__seera-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white&labelColor=0D1117)](https://codeforces.com/profile/Rohit_seera)
+
+<br>
+
+*"Models are easy to train and hard to ship. I optimize for shipped."*
+
+</div>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1E1B4B,50:6D28D9,100:8B5CF6&height=140&section=footer" width="100%" alt="" />
+'''
+
+          p.write_text(s, encoding="utf-8")
+          PY
 
       - name: Remove duplicate contribution total from external streak card
         run: |
