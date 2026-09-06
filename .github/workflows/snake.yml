@@ -3,7 +3,6 @@ name: Generate Profile Stats & Snake
 
 on:
   schedule:
-    # Refresh every 6 hours so contributions from any repository are picked up without waiting a full day.
     - cron: "0 */6 * * *"
   workflow_dispatch:
   push:
@@ -57,36 +56,23 @@ jobs:
           cp dist/github-snake-dark.svg github-snake-dark.svg
           python - <<'PY'
           from pathlib import Path
+          import base64
 
           p = Path("README.md")
           s = p.read_text(encoding="utf-8")
 
-          # Keep the generated analytics cards, but always show the dark GitHub-style heatmap snake.
+          # Use the dark GitHub-style heatmap snake in the profile README.
           s = s.replace(
               '<img src="./github-snake.svg" alt="GitHub contribution snake" />',
               '<img src="./github-snake-dark.svg" alt="GitHub contribution snake" />'
           )
 
-          # Restore the original Connect section from the profile's original design.
+          # Restore the exact Connect section from the original profile source.
           marker = "## Connect\n"
+          connect_b64 = "IyMgQ29ubmVjdAoKPGRpdiBhbGlnbj0iY2VudGVyIj4KClshW0dtYWlsXShodHRwczovL2ltZy5zaGllbGRzLmlvL2JhZGdlL0dtYWlsLXJycm9oaXRtZWVuYUBnbWFpbC5jb20tOEI1Q0Y2P3N0eWxlPWZvci10aGUtYmFkZ2UmbG9nbz1nbWFpbCZsb2dvQ29sb3I9d2hpdGUmbGFiZWxDb2xvcj0wRDExMTcpXShtYWlsdG86cnJyb2hpdG1lZW5hQGdtYWlsLmNvbSkKWyFbTGlua2VkSW5dKGh0dHBzOi8vaW1nLnNoaWVsZHMuaW8vYmFkZ2UvTGlua2VkSW4tUm9oaXQlMjBNZWVuYS02RDI4RDk/c3R5bGU9Zm9yLXRoZS1iYWRnZSZsb2dvPWxpbmtlZGluJmxvZ29Db2xvcj13aGl0ZSZsYWJlbENvbG9yPTBEMTExNyldKGh0dHBzOi8vd3d3LmxpbmtlZGluLmNvbS9pbi9yb2hpdC1tZWVuYS04YmFiYmEzMjQpClshW0dpdEh1Yl0oaHR0cHM6Ly9pbWcuc2hpZWxkcy5pby9iYWRnZS9HaXRIdWItUm9oaXQtLVNlZXJhLTRDMUQ5NT9zdHlsZT1mb3ItdGhlLWJhZGdlJmxvZ289Z2l0aHViJmxvZ29Db2xvcj13aGl0ZSZsYWJlbENvbG9yPTBEMTExNyldKGh0dHBzOi8vZ2l0aHViLmNvbS9Sb2hpdC1TZWVyYSkKWyFbQ29kZWZvcmNlc10oaHR0cHM6Ly9pbWcuc2hpZWxkcy5pby9iYWRnZS9Db2RlZm9yY2VzLVJvaGl0X19zZWVyYS0xRjhBQ0I/c3R5bGU9Zm9yLXRoZS1iYWRnZSZsb2dvPWNvZGVmb3JjZXMmbG9nb0NvbG9yPXdoaXRlJmxhYmVsQ29sb3I9MEQxMTE3KV0oaHR0cHM6Ly9jb2RlZm9yY2VzLmNvbS9wcm9maWxlL1JvaGl0X3NlZXJhKQoKPGJyPgoKKiJNb2RlbHMgYXJlIGVhc3kgdG8gdHJhaW4gYW5kIGhhcmQgdG8gc2hpcC4gSSBvcHRpbWl6ZSBmb3Igc2hpcHBlZC4iKgoKPC9kaXY+Cgo8aW1nIHNyYz0iaHR0cHM6Ly9jYXBzdWxlLXJlbmRlci52ZXJjZWwuYXBwL2FwaT90eXBlPXdhdmluZyZjb2xvcj0wOjFFMUI0Qiw1MDo2RDI4RDksMTAwOjhCNUNGNiZoZWlnaHQ9MTQwJnNlY3Rpb249Zm9vdGVyIiB3aWR0aD0iMTAwJSIgYWx0PSIiIC8+Cg=="
           if marker in s:
-              s = s[:s.index(marker)] + '''## Connect
-
-<div align="center">
-
-[![Gmail](https://img.shields.io/badge/Gmail-rrrohitmeena@gmail.com-8B5CF6?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0D1117)](mailto:rrrohitmeena@gmail.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Rohit%20Meena-6D28D9?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0D1117)](https://www.linkedin.com/in/rohit-meena-8babba324)
-[![GitHub](https://img.shields.io/badge/GitHub-Rohit--Seera-4C1D95?style=for-the-badge&logo=github&logoColor=white&labelColor=0D1117)](https://github.com/Rohit-Seera)
-[![Codeforces](https://img.shields.io/badge/Codeforces-Rohit__seera-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white&labelColor=0D1117)](https://codeforces.com/profile/Rohit_seera)
-
-<br>
-
-*"Models are easy to train and hard to ship. I optimize for shipped."*
-
-</div>
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1E1B4B,50:6D28D9,100:8B5CF6&height=140&section=footer" width="100%" alt="" />
-'''
+              connect = base64.b64decode(connect_b64).decode("utf-8")
+              s = s[:s.index(marker)] + connect
 
           p.write_text(s, encoding="utf-8")
           PY
