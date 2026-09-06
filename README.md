@@ -9,6 +9,8 @@
 
 <div align="center">
 
+<a href="https://rohit-meena.vercel.app/"><b>Rohit Meena — AI / ML Engineer</b></a>
+
 <img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&weight=600&size=26&pause=1200&color=78FF9C&center=true&vCenter=true&width=780&height=60&lines=AI+%2F+ML+Engineer;Generative+AI+Developer;Full-Stack+GenAI+%C2%B7+RAG+%C2%B7+Agents;Building+AI+systems+that+actually+ship." alt="Rohit Meena" />
 
 </div>
@@ -45,6 +47,7 @@ Full-Stack GenAI · Applied Deep Learning
 ![IIIT Bhopal](https://img.shields.io/badge/IIIT-Bhopal-6D28D9?style=for-the-badge&labelColor=0D1117)
 ![Location](https://img.shields.io/badge/Bhopal-India-A78BFA?style=for-the-badge&logo=googlemaps&logoColor=white&labelColor=0D1117)
 
+[![Portfolio](https://img.shields.io/badge/Portfolio-Rohit%20Meena-78FF9C?style=for-the-badge&labelColor=0D1117)](https://rohit-meena.vercel.app/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-6D28D9?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0D1117)](https://www.linkedin.com/in/rohit-meena-8babba324)
 [![Email](https://img.shields.io/badge/Email-rrrohitmeena@gmail.com-A78BFA?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0D1117)](mailto:rrrohitmeena@gmail.com)
 [![GitHub](https://img.shields.io/badge/GitHub-Rohit--Seera-4C1D95?style=for-the-badge&logo=github&logoColor=white&labelColor=0D1117)](https://github.com/Rohit-Seera)
@@ -242,17 +245,7 @@ The interesting constraint was that accuracy is the wrong metric here — a mode
 ### Generative AI Intern &nbsp;·&nbsp; PhotoGPT (TAIC LLC)
 `March 2026 — June 2026` &nbsp;·&nbsp; *Experience & Recommendation Letter available*
 
-Owned generative AI production work across image, video, and creative automation pipelines — operating at campaign scale rather than prototype scale.
-
-- Worked hands-on with **10+ Generative AI platforms** for image and video generation, prompt engineering, creative automation, and AI-assisted content production
-- Produced **300+ AI-generated visual assets** including advertisements, thumbnails, product showcases, and social media creatives
-- Supported AI-powered campaigns that collectively reached **10M+ views** across Instagram and Threads
-- Optimized prompts and **benchmarked newly released models** to improve output quality, creative consistency, and workflow efficiency
-
-![Generative AI](https://img.shields.io/badge/Generative%20AI-8B5CF6?style=flat-square&labelColor=0D1117)
-![Prompt Engineering](https://img.shields.io/badge/Prompt%20Engineering-8B5CF6?style=flat-square&labelColor=0D1117)
-![Model Benchmarking](https://img.shields.io/badge/Model%20Benchmarking-8B5CF6?style=flat-square&labelColor=0D1117)
-![Creative Automation](https://img.shields.io/badge/Creative%20Automation-8B5CF6?style=flat-square&labelColor=0D1117)
+Owned generative AI production work across image, video, and prompt/model evaluation workflows.
 
 ---
 
@@ -260,30 +253,17 @@ Owned generative AI production work across image, video, and creative automation
 
 <div align="center">
 
-<img width="48%" src="./profile/stats.svg" alt="GitHub Stats — commits, PRs, issues and stars" />
-<img width="48%" src="https://streak-stats.demolab.com?user=Rohit-Seera&theme=github-dark-blue&hide_border=true&background=0D1117&ring=78FF9C&fire=8B5CF6&currStreakLabel=A78BFA&sideLabels=C9D1D9&currStreakNum=FFFFFF&sideNums=FFFFFF&dates=8B949E" alt="GitHub contribution streak" />
+<img src="./github-stats.svg" alt="GitHub stats" />
+<img src="./github-streak.svg" alt="GitHub streak" />
 
 <br>
 
-<img width="88%" src="./profile/contribution-count.svg" alt="Total GitHub contributions" />
-
-</div>
-
----
-
-## Contribution Snake
-
-<div align="center">
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Rohit-Seera/Rohit-Seera/output/github-snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Rohit-Seera/Rohit-Seera/output/github-snake.svg" />
-  <img alt="GitHub Contribution Snake" src="https://raw.githubusercontent.com/Rohit-Seera/Rohit-Seera/output/github-snake.svg" width="100%" />
-</picture>
+<img src="./contribution-count.svg" alt="Contribution count" />
+<img src="./contribution-eaten.svg" alt="Contribution activity" />
 
 <br>
 
-<img src="./profile/contribution-eaten.svg" width="72%" alt="Contributions eaten by snake" />
+<img src="./github-snake.svg" alt="GitHub contribution snake" />
 
 </div>
 
@@ -293,15 +273,7 @@ Owned generative AI production work across image, video, and creative automation
 
 <div align="center">
 
-[![Gmail](https://img.shields.io/badge/Gmail-rrrohitmeena@gmail.com-8B5CF6?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0D1117)](mailto:rrrohitmeena@gmail.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Rohit%20Meena-6D28D9?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0D1117)](https://www.linkedin.com/in/rohit-meena-8babba324)
-[![GitHub](https://img.shields.io/badge/GitHub-Rohit--Seera-4C1D95?style=for-the-badge&logo=github&logoColor=white&labelColor=0D1117)](https://github.com/Rohit-Seera)
-[![Codeforces](https://img.shields.io/badge/Codeforces-Rohit__seera-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white&labelColor=0D1117)](https://codeforces.com/profile/Rohit_seera)
-
-<br>
-
-*"Models are easy to train and hard to ship. I optimize for shipped."*
+<a href="https://rohit-meena.vercel.app/"><b>Rohit Meena — AI / ML Engineer</b></a><br>
+<a href="https://www.linkedin.com/in/rohit-meena-8babba324">LinkedIn</a> · <a href="mailto:rrrohitmeena@gmail.com">Email</a> · <a href="https://github.com/Rohit-Seera">GitHub</a> · <a href="https://codeforces.com/profile/Rohit_seera">Codeforces</a>
 
 </div>
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1E1B4B,50:6D28D9,100:8B5CF6&height=140&section=footer" width="100%" alt="" />
