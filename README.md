@@ -263,7 +263,7 @@ Owned generative AI production work across image, video, and prompt/model evalua
 
 <br>
 
-<img src="./github-snake.svg" alt="GitHub contribution snake" />
+<img src="./github-snake-dark.svg" alt="GitHub contribution snake" />
 
 </div>
 
@@ -273,7 +273,15 @@ Owned generative AI production work across image, video, and prompt/model evalua
 
 <div align="center">
 
-<a href="https://rohit-meena.vercel.app/"><b>Rohit Meena — AI / ML Engineer</b></a><br>
-<a href="https://www.linkedin.com/in/rohit-meena-8babba324">LinkedIn</a> · <a href="mailto:rrrohitmeena@gmail.com">Email</a> · <a href="https://github.com/Rohit-Seera">GitHub</a> · <a href="https://codeforces.com/profile/Rohit_seera">Codeforces</a>
+[![Gmail](https://img.shields.io/badge/Gmail-rrrohitmeena@gmail.com-8B5CF6?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0D1117)](mailto:rrrohitmeena@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Rohit%20Meena-6D28D9?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0D1117)](https://www.linkedin.com/in/rohit-meena-8babba324)
+[![GitHub](https://img.shields.io/badge/GitHub-Rohit--Seera-4C1D95?style=for-the-badge&logo=github&logoColor=white&labelColor=0D1117)](https://github.com/Rohit-Seera)
+[![Codeforces](https://img.shields.io/badge/Codeforces-Rohit__seera-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white&labelColor=0D1117)](https://codeforces.com/profile/Rohit_seera)
+
+<br>
+
+*"Models are easy to train and hard to ship. I optimize for shipped."*
 
 </div>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1E1B4B,50:6D28D9,100:8B5CF6&height=140&section=footer" width="100%" alt="" />
