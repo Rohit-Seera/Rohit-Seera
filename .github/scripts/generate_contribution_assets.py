@@ -21,7 +21,6 @@ try:
         for week in calendar["weeks"]
         for d in week["contributionDays"]
     ]
-    # This is the exact sum of the heatmap cells, not a separately cached value.
     total = sum(d["count"] for d in days)
     commits = int(collection["totalCommitContributions"])
 except (KeyError, TypeError, ValueError) as exc:
@@ -32,7 +31,6 @@ public_repos = int(Path(ROOT / "public_repos.txt").read_text(encoding="utf-8").s
 DIST.mkdir(parents=True, exist_ok=True)
 PROFILE.mkdir(parents=True, exist_ok=True)
 
-# Keep the snake visually usable while still making it grow with contribution volume.
 scale = min(1.35, 1.0 + total / 1800.0)
 
 
@@ -111,13 +109,13 @@ count = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="100" vi
 (PROFILE / "contribution-count.svg").write_text(count, encoding="utf-8")
 
 # Animate the displayed counter from 0 to the exact number represented by the heatmap.
-# The last frame stays visible, so the image also has a correct static fallback state.
-frame_limit = 3000
+# This is intentionally bounded to keep the generated SVG reasonably small.
+frame_limit = 600
 step = max(1, (total + frame_limit - 1) // frame_limit)
 values = list(range(0, total + 1, step))
 if values[-1] != total:
     values.append(total)
-frame_duration = 0.16
+frame_duration = 0.12
 frames: list[str] = []
 for index, value in enumerate(values):
     begin = index * frame_duration
